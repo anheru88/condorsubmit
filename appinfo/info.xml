@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<info xmlns:xsi= "http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
+    <id>condorsubmit</id>
+    <name>Condor Submit</name>
+    <summary>This app can excecute .sub files in the server</summary>
+    <description><![CDATA[This app can excecute .sub files in the server]]></description>
+    <version>0.0.1</version>
+    <licence>agpl</licence>
+    <author mail="ajimenez@digitalcaribe.com.co" >Angel Jiemenz Escobar</author>
+    <namespace>CondorSubmit</namespace>
+    <category>tools</category>
+    <bugs>https://github.com/anheru88/nextcloud-htcondor/issues</bugs>
+    <dependencies>
+        <nextcloud min-version="12" max-version="12"/>
+    </dependencies>
+    <navigations>
+        <navigation>
+            <name>Condor Submit</name>
+            <route>condorsubmit.page.index</route>
+        </navigation>
+    </navigations>
+</info>

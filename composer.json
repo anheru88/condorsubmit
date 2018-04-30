@@ -1,0 +1,15 @@
+{
+    "name": "Condor Submit",
+    "description": "This app can excecute .sub files in the server",
+    "type": "project",
+    "license": "AGPL",
+    "authors": [
+        {
+            "name": "Angel Jiemenz Escobar"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^5.4"
+    }
+}
