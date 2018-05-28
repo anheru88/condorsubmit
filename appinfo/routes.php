@@ -3,5 +3,5 @@
  * adding route for ajax callback
  */
 return ['routes' => [
-    ['name' => 'condorsubmit#submit', 'url' => '/submit', 'verb' => 'GET']
+    ['name' => 'condorsubmit#submit', 'url' => '/submit', 'verb' => 'POST']
 ]];

@@ -55,7 +55,7 @@
         }
           return false;
         }
-      return false;      
+      return false;       
     },
 
     _onSubmitCommand : function(ev){
@@ -69,19 +69,24 @@
 
     submit: function(fileInfo){
 
+      console.log(fileInfo);
+
+
       if(fileInfo == null){
         alert('No fileinfo provided.')
 
         return 
       }
 
-      var url =  OC.generateUrl('/apps/condorsubmit/submit'),
-          data = {source: fileInfo.getFullPath()},
-          _self = this;
+      var base_url =  OC.generateUrl('/apps/condorsubmit/submit');
+      
+      var data = {
+        source: fileInfo.getFullPath()
+      };
 
       $.ajax({
         type: 'POST',
-        url: url,
+        url: base_url,
         dataType: 'json',
         data: data,
         async: true,
@@ -104,9 +109,9 @@
 
         return;
       }
-
-   
-
+      
+      console.log(fileInfo);
+  
       var url = OC.generateUrl('/apps/condorsubmit/submit'),
           data = {source: fileInfo.getFullPath()},
           _self = this;
@@ -145,31 +150,7 @@
 
       this.$el.find('.get-condorsubmit').html(msg);
 
-    },
-
-    /**
-     * changeHandler
-     */
-    _onChangeEvent: function(ev) {
-      var algorithmType = $(ev.currentTarget).val();
-      if(algorithmType != '') {
-        this.$el.html('<div style="text-align:center; word-wrap:break-word;" class="get-condorsubmit"><p><img src="'
-          + OC.imagePath('core','loading.gif')
-          + '"><br><br></p><p>'
-          + t('condorsubmit', 'Creating Checksum ...')
-          + '</p></div>');
-        this.check(this.getFileInfo(), algorithmType);
-      }
-    },
-
-    _onReloadEvent: function(ev) {
-      ev.preventDefault();
-      this._renderSelectList(this.$el);
-      this.delegateEvents({
-        'change #choose-algorithm': '_onChangeEvent'
-      });
-    }
-
+    } 
   });
 
   OCA.CondorSubmit = OCA.CondorSubmit || {};
