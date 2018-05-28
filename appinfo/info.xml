@@ -7,17 +7,16 @@
     <description><![CDATA[This app can excecute .sub files in the server]]></description>
     <version>0.0.1</version>
     <licence>agpl</licence>
-    <author mail="ajimenez@digitalcaribe.com.co" >Angel Jiemenz Escobar</author>
-    <namespace>CondorSubmit</namespace>
+    <author mail="ajimenez@digitalcaribe.com.co">Angel Jiemenz Escobar</author>
+    <namespace>Condorsubmit</namespace>
+    <types>
+      <filesystem/>
+    </types>
+    <category>files</category>
     <category>tools</category>
     <bugs>https://github.com/anheru88/nextcloud-htcondor/issues</bugs>
     <dependencies>
-        <nextcloud min-version="12" max-version="12"/>
+        <owncloud min-version="9.0" max-version="11" />
+        <nextcloud min-version="9" max-version="13" />
     </dependencies>
-    <navigations>
-        <navigation>
-            <name>Condor Submit</name>
-            <route>condorsubmit.page.index</route>
-        </navigation>
-    </navigations>
 </info>

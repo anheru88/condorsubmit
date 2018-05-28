@@ -1,52 +1,31 @@
-# Condor Submit
-Place this app in **nextcloud/apps/**
+Checksum
+========
 
-## Building the app
+**Plugin for [Nextcloud](https://nextcloud.com) and [ownCloud](https://owncloud.org) to create hashes of files.**
 
-The app can be built by using the provided Makefile by running:
+![animation](screenshots/checksum.gif)
 
-    make
+Installation
+------------
 
-This requires the following things to be present:
-* make
-* which
-* tar: for building the archive
-* curl: used if phpunit and composer are not installed to fetch them from the web
-* npm: for building and testing everything JS, only required if a package.json is placed inside the **js/** folder
+**Nextcloud**
 
-The make command will install or update Composer dependencies if a composer.json is present and also **npm run build** if a package.json is present in the **js/** folder. The npm **build** script should use local paths for build systems and package managers, so people that simply want to build the app won't need to install npm libraries globally, e.g.:
+In your Instance, simply navigate to »Apps«, choose the category »Files«, find the Checksum app and enable it.
 
-**package.json**:
-```json
-"scripts": {
-    "test": "node node_modules/gulp-cli/bin/gulp.js karma",
-    "prebuild": "npm install && node_modules/bower/bin/bower install && node_modules/bower/bin/bower update",
-    "build": "node node_modules/gulp-cli/bin/gulp.js"
-}
-```
+**ownCloud**
+- Copy the checksum folder in the app directory of owncloud.
+- If not already done, rename the app-folder to "checksum" - causes overwise an sql error.
+- Enable this app in the admin interface.
 
+Usage
+-----
 
-## Publish to App Store
+Just open the details view of the file (Sidebar). There should be a new tab called "Checksum". Select a algorithm and it will try to generate a hash. If you want an other algorithm, just click on the reload button. 
 
-First get an account for the [App Store](http://apps.nextcloud.com/) then run:
+Possible algorithms are md5, sha1, sha256, sha384, sha512 and crc32.
 
-    make && make appstore
+Compatibility
+-------------
 
-The archive is located in build/artifacts/appstore and can then be uploaded to the App Store.
-
-## Running tests
-You can use the provided Makefile to run all tests by using:
-
-    make test
-
-This will run the PHP unit and integration tests and if a package.json is present in the **js/** folder will execute **npm run test**
-
-Of course you can also install [PHPUnit](http://phpunit.de/getting-started.html) and use the configurations directly:
-
-    phpunit -c phpunit.xml
-
-or:
-
-    phpunit -c phpunit.integration.xml
-
-for integration tests
+- I only tested the app for the current version of owncloud (9.x) and Nextcloud 10 and 11.
+- I tried to use the current api as much as possible. It should be safe for future versions.
