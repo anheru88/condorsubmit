@@ -5,9 +5,9 @@
     <name>Condor Submit</name>
     <summary>This app can excecute .sub files in the server</summary>
     <description><![CDATA[This app can excecute .sub files in the server]]></description>
-    <version>0.0.2</version>
+    <version>0.0.4</version>
     <licence>agpl</licence>
-   <author mail="ajimenezescobar@gmail.com" homepage="https://github.com/anheru88/condorsubmit">Angel Jimenez Escobar</author>
+    <author mail="ajimenezescobar@gmail.com" homepage="https://github.com/anheru88/condorsubmit">Angel Jimenez Escobar</author>
     <namespace>Condorsubmit</namespace>
     <types>
       <filesystem/>
@@ -16,6 +16,6 @@
     <category>tools</category>
     <bugs>https://github.com/anheru88/condorsubmit/issues</bugs>
     <dependencies>
-        <nextcloud min-version="9" max-version="15" />
+        <nextcloud min-version="15" max-version="21" />
     </dependencies>
 </info>

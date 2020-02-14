@@ -1,5 +1,8 @@
 <?php
+
 namespace OCA\Condorsubmit\Controller;
+
+require_once(__DIR__ . '/../../vendor/autoload.php');
 
 use OCP\AppFramework\Controller;
 use OCP\IRequest;
@@ -7,6 +10,8 @@ use OC\Files\Filesystem;
 use OCP\AppFramework\Http\JSONResponse;
 use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\DataResponse;
+use PhpAmqpLib\Connection\AMQPStreamConnection;
+use PhpAmqpLib\Message\AMQPMessage;
 
 
 class CondorsubmitController extends Controller {
@@ -27,9 +32,21 @@ class CondorsubmitController extends Controller {
 
 		$file = Filesystem::getLocalFile($source);
 
-		shell_exec('/var/www/html/nextcloud/data/admin/files/Condor/test.sh AnotherTest');
+        $connection = new AMQPStreamConnection('rabbitmq', 5672, 'guest', 'guest');
 
-		return new DataResponse("$file submitting");
+        $channel = $connection->channel();
+
+        $channel->queue_declare('nextcloud', false, false, false, false);
+
+        $msg = new AMQPMessage('Hello World!');
+
+        $channel->basic_publish($msg, '', 'hello');
+
+        $channel->close();
+
+        $connection->close();
+
+       	return new DataResponse("$file submitting");
 	}
 }
 
