@@ -16,21 +16,21 @@ use PhpAmqpLib\Message\AMQPMessage;
 
 class CondorsubmitController extends Controller {
 
-	protected $language;
+    protected $language;
 
-	public function __construct($appName, IRequest $request) {
+    public function __construct($appName, IRequest $request) {
 
-			parent::__construct($appName, $request);
+    parent::__construct($appName, $request);
 
-			// get i10n
-			$this->language = \OC::$server->getL10N('condorsubmit');
+    // get i10n
+    $this->language = \OC::$server->getL10N('condorsubmit');
 
-	}
+    }
 
 
-	public function submit($source){
+    public function submit($source){
 
-		$file = Filesystem::getLocalFile($source);
+        $file = Filesystem::getLocalFile($source);
 
         $connection = new AMQPStreamConnection('rabbitmq', 5672, 'guest', 'guest');
 
@@ -38,15 +38,16 @@ class CondorsubmitController extends Controller {
 
         $channel->queue_declare('nextcloud', false, false, false, false);
 
-        $msg = new AMQPMessage('Hello World!');
+        $msg = new AMQPMessage(
+            json_encode(['file' => $file])
+        );
 
-        $channel->basic_publish($msg, '', 'hello');
+        $channel->basic_publish($msg, '', 'nextcloud');
 
         $channel->close();
 
         $connection->close();
 
-       	return new DataResponse("$file submitting");
-	}
+       return new DataResponse("$file submitting");
+    }
 }
-
