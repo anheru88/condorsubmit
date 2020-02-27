@@ -27,7 +27,6 @@ class CondorsubmitController extends Controller {
 
     }
 
-
     public function submit($source){
 
         $file = Filesystem::getLocalFile($source);
@@ -50,4 +49,9 @@ class CondorsubmitController extends Controller {
 
        return new DataResponse("$file submitting");
     }
+
+    public function sync($user){
+        $salida = shell_exec('php /var/www/html/occ files:scan ' . $user);
+
+        return new DataResponse("$user data sync: $salida");    }
 }
